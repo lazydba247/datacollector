@@ -129,7 +129,7 @@ public class BasicPropertiesConfig {
   @ConfigDef(
       required = false,
       type = ConfigDef.Type.NUMBER,
-      defaultValue = "0",
+      defaultValue = "-1",
       label = "Expiration",
       description = "Expiration Time",
       displayPosition = 130,
@@ -137,7 +137,7 @@ public class BasicPropertiesConfig {
       triggeredByValue = "true",
       group = "#0"
   )
-  public short expiration = 0;
+  public long expiration = -1;
 
   @ConfigDef(
       required = false,
