@@ -127,17 +127,30 @@ public class BasicPropertiesConfig {
   public String replyTo;
 
   @ConfigDef(
+          required = false,
+          type = ConfigDef.Type.BOOLEAN,
+          defaultValue = "true",
+          label = "Set Expiration",
+          description = "Add Expiration Value to Message Properties",
+          displayPosition = 130,
+          dependsOn = "setAMQPMessageProperties",
+          triggeredByValue = "true",
+          group = "#0"
+  )
+  public boolean setExpiration = true;
+
+  @ConfigDef(
       required = false,
       type = ConfigDef.Type.NUMBER,
       defaultValue = "0",
       label = "Expiration",
       description = "Expiration Time",
-      displayPosition = 130,
-      dependsOn = "setAMQPMessageProperties",
+      displayPosition = 140,
+      dependsOn = "setExpiration",
       triggeredByValue = "true",
       group = "#0"
   )
-  public short expiration = 0;
+  public long expiration = 0;
 
   @ConfigDef(
       required = false,
@@ -145,7 +158,7 @@ public class BasicPropertiesConfig {
       defaultValue = "",
       label = "Message Id",
       description = "Message Id",
-      displayPosition = 140,
+      displayPosition = 150,
       dependsOn = "setAMQPMessageProperties",
       triggeredByValue = "true",
       group = "#0"
@@ -158,7 +171,7 @@ public class BasicPropertiesConfig {
       defaultValue = "true",
       label = "Set Current Time",
       description = "Set Current Time Stamp",
-      displayPosition = 150,
+      displayPosition = 160,
       dependsOn = "setAMQPMessageProperties",
       triggeredByValue = "true",
       group = "#0"
@@ -171,7 +184,7 @@ public class BasicPropertiesConfig {
       defaultValue = "",
       label = "Time Stamp",
       description = "Time Stamp",
-      displayPosition = 160,
+      displayPosition = 170,
       group = "#0",
       dependsOn = "setCurrentTime",
       triggeredByValue = "false"
@@ -184,7 +197,7 @@ public class BasicPropertiesConfig {
       defaultValue = "",
       label = "Message Type",
       description = "Message Type",
-      displayPosition = 170,
+      displayPosition = 180,
       dependsOn = "setAMQPMessageProperties",
       triggeredByValue = "true",
       group = "#0"
@@ -197,7 +210,7 @@ public class BasicPropertiesConfig {
       defaultValue = "",
       label = "User Id",
       description = "Optional user ID. Verified by RabbitMQ against the actual connection username.",
-      displayPosition = 180,
+      displayPosition = 190,
       dependsOn = "setAMQPMessageProperties",
       triggeredByValue = "true",
       group = "#0"
@@ -210,7 +223,7 @@ public class BasicPropertiesConfig {
       defaultValue = "",
       label = "App Id",
       description = "Identifier of the application that produced the message.",
-      displayPosition = 190,
+      displayPosition = 200,
       dependsOn = "setAMQPMessageProperties",
       triggeredByValue = "true",
       group = "#0"
@@ -220,3 +233,4 @@ public class BasicPropertiesConfig {
   //Cluster Id is deprecated. No need to add it.
 
 }
+

@@ -149,7 +149,11 @@ public final class RabbitUtil {
       ));
       return;
     }
-    builder.expiration(String.valueOf(basicPropertiesConfig.expiration));
+    
+	// add expiration only if configured to be sent
+    if (basicPropertiesConfig.setExpiration) {
+          builder.expiration(String.valueOf(basicPropertiesConfig.expiration));
+    }
 
     if (basicPropertiesConfig.headers != null && !basicPropertiesConfig.headers.isEmpty()) {
       builder.headers(basicPropertiesConfig.headers);
