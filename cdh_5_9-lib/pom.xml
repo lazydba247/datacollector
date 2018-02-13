@@ -23,12 +23,12 @@
     <parent>
         <groupId>com.streamsets</groupId>
         <artifactId>streamsets-datacollector-stage-lib-parent</artifactId>
-        <version>3.1.0.0-SNAPSHOT</version>
+        <version>3.2.0.0-SNAPSHOT</version>
         <relativePath>../stage-lib-parent</relativePath>
     </parent>
     <groupId>com.streamsets</groupId>
     <artifactId>streamsets-datacollector-cdh_5_9-lib</artifactId>
-    <version>3.1.0.0-SNAPSHOT</version>
+    <version>3.2.0.0-SNAPSHOT</version>
     <description>StreamSets Data Collector CDH 5.9.2 Lib</description>
     <name>StreamSets Data Collector 5.9.0 Lib</name>
     <packaging>jar</packaging>
@@ -130,6 +130,14 @@
                 <exclusion>
                     <groupId>io.netty</groupId>
                     <artifactId>*</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>io.netty</groupId>
+                    <artifactId>netty-transport-native-epoll</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>io.netty</groupId>
+                    <artifactId>netty-transport-native-unix-common</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -601,6 +609,14 @@
                 <exclusion>
                     <groupId>io.netty</groupId>
                     <artifactId>*</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>io.netty</groupId>
+                    <artifactId>netty-transport-native-epoll</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>io.netty</groupId>
+                    <artifactId>netty-transport-native-unix-common</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>

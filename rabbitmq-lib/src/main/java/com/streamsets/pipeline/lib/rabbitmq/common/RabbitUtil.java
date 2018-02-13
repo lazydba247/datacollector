@@ -138,7 +138,7 @@ public final class RabbitUtil {
 
     builder.deliveryMode(basicPropertiesConfig.deliveryMode.getDeliveryMode());
 
-    if (basicPropertiesConfig.expiration < -1) {
+    if (basicPropertiesConfig.expiration < 0) {
       LOG.error("Invalid Configuration value for AMQP Basic Properties Expiration", basicPropertiesConfig.expiration);
       issues.add(context.createConfigIssue(
           Groups.RABBITMQ.name(),
@@ -150,11 +150,10 @@ public final class RabbitUtil {
       return;
     }
     
-    // Add Expiration Config only if was changed from -1 
-    if (basicPropertiesConfig.expiration >= 0) {
+	// add expiration only if configured to be sent
+    if (basicPropertiesConfig.setExpiration) {
           builder.expiration(String.valueOf(basicPropertiesConfig.expiration));
     }
-
 
     if (basicPropertiesConfig.headers != null && !basicPropertiesConfig.headers.isEmpty()) {
       builder.headers(basicPropertiesConfig.headers);
