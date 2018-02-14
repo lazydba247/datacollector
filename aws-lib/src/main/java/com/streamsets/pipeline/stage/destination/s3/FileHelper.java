@@ -59,7 +59,11 @@ abstract class FileHelper {
   abstract List<UploadMetadata> handle(Iterator<Record> recordIterator, String bucket, String keyPrefix) throws IOException, StageException;
 
   protected ObjectMetadata getObjectMetadata() throws StageException {
-    ObjectMetadata metadata = null;
+    ObjectMetadata metadata = new ObjectMetadata();
+    metadata.setHeader(
+            Headers.S3_CANNED_ACL,
+            s3TargetConfigBean.cannedACL.toString()
+    );
     if (s3TargetConfigBean.sseConfig.useSSE) {
       metadata = new ObjectMetadata();
       switch (s3TargetConfigBean.sseConfig.encryption) {

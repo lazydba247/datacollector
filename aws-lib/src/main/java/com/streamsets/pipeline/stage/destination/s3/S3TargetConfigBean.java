@@ -30,6 +30,7 @@ import com.streamsets.pipeline.stage.lib.aws.ProxyConfig;
 import com.streamsets.pipeline.stage.lib.aws.TransferManagerConfig;
 
 import java.util.List;
+import com.amazonaws.services.s3.model.CannedAccessControlList;
 
 public class S3TargetConfigBean {
 
@@ -133,6 +134,18 @@ public class S3TargetConfigBean {
     triggeredByValue = {"TEXT", "JSON", "DELIMITED", "AVRO", "BINARY", "PROTOBUF", "SDC_JSON"}
   )
   public boolean compress;
+
+  @ConfigDef(
+          required = true,
+          type = ConfigDef.Type.MODEL,
+          description = "Amazon S3 set of predefined grants for objects (x-amz-acl header)",
+          label = "S3 canned ACL",
+          defaultValue = "Private",
+          displayPosition = 240,
+          group = "S3"
+  )
+  @ValueChooserModel(CannedACLChooserValues.class)
+  public CannedAccessControlList cannedACL = CannedAccessControlList.Private;
 
   @ConfigDefBean(groups = {"S3"})
   public DataGeneratorFormatConfig dataGeneratorFormatConfig;
